@@ -6,7 +6,7 @@ const token = "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"
 
 
 async function query(data) {
-   image.src = "/loader.gif"
+   image.src = "./loader.gif"
    const response = await fetch(
       "https://api-inference.huggingface.co/models/ZB-Tech/Text-to-Image",
       {
