@@ -10,7 +10,7 @@ async function query(data) {
    // document.write("Genarating........")
    image.src = "loader.gif"
    const response = await fetch(
-      "https://api-inference.huggingface.co/models/prithivMLmods/Logo-Design-Flux-LoRA",
+      "https://router.huggingface.co/hf-inference/models/black-forest-labs/FLUX.1-dev",
       {
          headers: {
             Authorization: `Bearer ${token}`
