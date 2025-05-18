@@ -1,1 +1,44 @@
-const _0x5bd312=_0x8201;function _0x8201(_0x336fc2,_0x5e39d1){const _0xca272d=_0xca27();return _0x8201=function(_0x820122,_0xb77ced){_0x820122=_0x820122-0x140;let _0x1e96da=_0xca272d[_0x820122];return _0x1e96da;},_0x8201(_0x336fc2,_0x5e39d1);}(function(_0x55e48b,_0x93ede){const _0x243441=_0x8201,_0x53185c=_0x55e48b();while(!![]){try{const _0x4dea0e=-parseInt(_0x243441(0x158))/0x1*(-parseInt(_0x243441(0x14a))/0x2)+-parseInt(_0x243441(0x159))/0x3+parseInt(_0x243441(0x15c))/0x4*(-parseInt(_0x243441(0x154))/0x5)+parseInt(_0x243441(0x146))/0x6+parseInt(_0x243441(0x14d))/0x7*(-parseInt(_0x243441(0x15d))/0x8)+parseInt(_0x243441(0x142))/0x9*(-parseInt(_0x243441(0x140))/0xa)+parseInt(_0x243441(0x150))/0xb*(parseInt(_0x243441(0x141))/0xc);if(_0x4dea0e===_0x93ede)break;else _0x53185c['push'](_0x53185c['shift']());}catch(_0x567644){_0x53185c['push'](_0x53185c['shift']());}}}(_0xca27,0xaf5ff));const inputText=document[_0x5bd312(0x15f)]('input'),image=document[_0x5bd312(0x15f)](_0x5bd312(0x157)),button=document[_0x5bd312(0x15f)](_0x5bd312(0x14f)),token='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',downloadButton=document['getElementById'](_0x5bd312(0x145));async function query(_0x3c1d04){const _0x188ca7=_0x5bd312;image[_0x188ca7(0x14b)]=_0x188ca7(0x15e);const _0x1851c3=await fetch('https://api-inference.huggingface.co/models/prithivMLmods/Logo-Design-Flux-LoRA',{'headers':{'Authorization':_0x188ca7(0x153)+token},'method':'POST','body':JSON[_0x188ca7(0x15a)]({'inputs':inputText[_0x188ca7(0x160)]})}),_0x5276e0=await _0x1851c3['blob']();return _0x5276e0;}button[_0x5bd312(0x149)]('click',async function(){const _0x52328a=_0x5bd312;query()[_0x52328a(0x151)](_0x3fe88e=>{const _0x8b9892=_0x52328a,_0x15b59b=URL[_0x8b9892(0x144)](_0x3fe88e);image[_0x8b9892(0x14b)]=_0x15b59b;});}),downloadButton[_0x5bd312(0x149)]('click',function(){const _0x3cfd87=_0x5bd312;if(image[_0x3cfd87(0x14b)]){const _0x2af2d5=document[_0x3cfd87(0x152)]('a');_0x2af2d5[_0x3cfd87(0x148)]=image[_0x3cfd87(0x14b)],_0x2af2d5[_0x3cfd87(0x143)]=_0x3cfd87(0x15b),document['body'][_0x3cfd87(0x156)](_0x2af2d5),_0x2af2d5[_0x3cfd87(0x14e)](),document[_0x3cfd87(0x155)][_0x3cfd87(0x14c)](_0x2af2d5);}else alert(_0x3cfd87(0x147));});function _0xca27(){const _0x5dc798=['generated-image.png','476328PdAKHN','9411496mwVius','./loader.gif','getElementById','value','220LLaHCw','84RSJjSP','261117MpYQua','download','createObjectURL','downloadBtn','8258706QozRLQ','Please\x20generate\x20an\x20image\x20first!','href','addEventListener','604196xgzOex','src','removeChild','7lirChF','click','btn','2495614EtsMHa','then','createElement','Bearer\x20','5FJqRUi','body','appendChild','image','1RYhujj','1843581MNsFTL','stringify'];_0xca27=function(){return _0x5dc798;};return _0xca27();}
+const inputText = document.getElementById("input")
+const image = document.getElementById("image")
+const button = document.getElementById("btn")
+const token = "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"
+const downloadButton = document.getElementById("downloadBtn");
+
+
+
+async function query(data) {
+   // document.write("Genarating........")
+   image.src = "loader.gif"
+   const response = await fetch(
+      "https://api-inference.huggingface.co/models/prithivMLmods/Logo-Design-Flux-LoRA",
+      {
+         headers: {
+            Authorization: `Bearer ${token}`
+
+         },
+         method: "POST",
+         body: JSON.stringify({ "inputs": inputText.value }),
+      }
+   );
+   const result = await response.blob();
+   return result;
+}
+button.addEventListener('click', async function () {
+   query().then((response) => {
+      const objectURL = URL.createObjectURL(response)
+      image.src = objectURL
+   });
+})
+
+downloadButton.addEventListener('click', function () {
+   if (image.src) {
+       const link = document.createElement('a');
+       link.href = image.src; // Use the image source as the link
+       link.download = 'generated-image.png'; // Set the default file name
+       document.body.appendChild(link);
+       link.click(); // Trigger the download
+       document.body.removeChild(link); // Clean up
+   } else {
+       alert("Please generate an image first!");
+   }
+});
